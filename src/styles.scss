@@ -11,6 +11,10 @@
 		font-weight: bold;
 	}
 
+	.table-body {
+		overflow: auto;
+	}
+
 	.table-row {
 		display: flex;
 		border-bottom: 1px solid #ccc;

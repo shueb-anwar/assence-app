@@ -10,6 +10,7 @@ import { ViewPorts } from '../viewports';
 })
 export class HomeComponent implements OnInit {
   public isMobile: boolean = false;
+  public contentHeight: number = 0;
   
 	searchTerm: string = "";
 	direction: string= "asc";
@@ -28,6 +29,8 @@ export class HomeComponent implements OnInit {
 
       this.viewport.viewPortChange().subscribe((val) => {
         this.isMobile = val.isLtSMVP;
+
+        this.contentHeight = window.innerHeight - 97;
       });
   	}
 
