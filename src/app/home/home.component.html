@@ -1,4 +1,37 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="isMobile">
+	<div class="row row-filters">
+		<div class="col-auto">
+			<select  [(ngModel)]="column" class="form-control">
+				<option>Select Filter</option>
+				<option value="name">Name</option>
+				<option value="make">Make</option>
+				<option value="model">Model</option>
+				<option value="code">Code</option>
+			</select>
+		</div>
+		<div class="col-auto">
+			<select [(ngModel)]="direction" class="form-control">
+				<option value="asc">Asc</option>
+				<option value="desc">Desc</option>
+			</select>
+		</div>
+	</div>
+	<div class="card"  *ngFor="let item of deals|filter:searchTerm|sort:direction:column">
+		<div class="card-body">
+			<h5 class="card-title">{{ item.name }}</h5>
+			<h6 class="card-subtitle mb-2 text-muted">{{ item.code }}</h6>
+		    <p>{{ item.make }}, {{ item.model }}</p>
+		    <div>
+		    	<small>{{ item.tar_name }} -</small>
+		    	<small>{{ item.tar_code }}, </small>
+		    	<small>{{ item.tar_data }} MB Data, </small>
+		    	<small>{{ item.tar_minutes }} minutes, </small>
+		    	<small>{{ item.tar_sms }} sms</small>
+		    </div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid" *ngIf="!isMobile">
 	<section class="custom-table">
 		<div class="table-header">
 			<div class="col">Name
