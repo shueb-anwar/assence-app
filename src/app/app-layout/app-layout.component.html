@@ -1,0 +1,9 @@
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Essence Global</a>
+    <form class="d-flex">
+      <input type="search" [(ngModel)]="searchTerm" name="searchTerm" id="searchTerm" placeholder="Search Anything" class="form-control me-2" (keyup)="search()" autocomplete="off">
+    </form>
+  </div>
+</nav>
+<router-outlet></router-outlet>

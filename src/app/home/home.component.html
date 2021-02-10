@@ -1,0 +1,38 @@
+<div class="container-fluid">
+	<section class="custom-table">
+		<div class="table-header">
+			<div class="col">Name
+				<i class="bi bi-chevron-double-up" (click)="setSortParams({dir:'asc', col: 'name'})"></i>
+		    	<i class="bi bi-chevron-double-down" (click)="setSortParams({dir:'desc', col: 'name'})"></i>
+		    </div>
+		    <div class="col">Make
+		    	<i class="bi bi-chevron-double-up" (click)="setSortParams({dir:'asc', col: 'make'})"></i>
+		    	<i class="bi bi-chevron-double-down" (click)="setSortParams({dir:'desc', col: 'make'})"></i>
+		    </div>
+		    <div class="col">Model
+		    	<i class="bi bi-chevron-double-up" (click)="setSortParams({dir:'asc', col: 'model'})"></i>
+		    	<i class="bi bi-chevron-double-down" (click)="setSortParams({dir:'desc', col: 'model'})"></i>
+		    </div>
+		    <div class="col">Code 
+		    	<i class="bi bi-chevron-double-up" (click)="setSortParams({dir:'asc', col: 'code'})"></i>
+		    	<i class="bi bi-chevron-double-down" (click)="setSortParams({dir:'desc', col: 'code'})"></i>
+		    </div>
+		    <div class="col col-md">
+		    	Terrif Detail
+		    </div>
+		</div>
+	  	<div class="table-row"  *ngFor="let item of deals|filter:searchTerm|sort:direction:column">
+		    <div class="col">{{ item.name }}</div>
+		    <div class="col">{{ item.make }}</div>
+		    <div class="col">{{ item.model }}</div>
+		    <div class="col">{{ item.code }}</div>
+		    <div class="col col-md">
+		    	<small>{{ item.tar_name }} -</small>
+		    	<small>{{ item.tar_code }}, </small>
+		    	<small>{{ item.tar_data }} MB Data, </small>
+		    	<small>{{ item.tar_minutes }} minutes, </small>
+		    	<small>{{ item.tar_sms }} sms</small>
+		    </div>
+		</div>
+	</section>
+</div>

@@ -31,6 +31,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -68,7 +70,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "essence-app:build"
+            "browserTarget": "essence-app:build",
+            "port": 4200,
+            "host": "0.0.0.0",
+            "proxyConfig": "src/proxy.conf.js"
           },
           "configurations": {
             "production": {

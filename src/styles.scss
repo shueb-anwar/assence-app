@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+.col {
+  flex: 1;        /* distributes space on the line equally among items */
+}
+
+.custom-table {
+	.table-header {
+		display: flex;
+		border-bottom: 1px solid #222;
+		font-weight: bold;
+	}
+
+	.table-row {
+		display: flex;
+		border-bottom: 1px solid #ccc;
+
+		&:nth-child(even) {
+			
+		}
+	}
+
+	.col {
+		padding: 8px 5px;
+	}
+
+	.col-md {
+		flex-grow: 1.6;
+	}	
+}
