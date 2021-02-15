@@ -1,39 +1,23 @@
-<div class="container-fluid" *ngIf="isMobile">
-	<div class="row row-filters">
-		<div class="col-auto">
-			<select  [(ngModel)]="column" class="form-control">
-				<option>Select Filter</option>
-				<option value="name">Name</option>
-				<option value="make">Make</option>
-				<option value="model">Model</option>
-				<option value="code">Code</option>
-			</select>
-		</div>
-		<div class="col-auto">
-			<select [(ngModel)]="direction" class="form-control">
-				<option value="asc">Asc</option>
-				<option value="desc">Desc</option>
-			</select>
-		</div>
-	</div>
-	<div class="card"  *ngFor="let item of deals|filter:searchTerm|sort:direction:column">
-		<div class="card-body">
-			<h5 class="card-title">{{ item.name }}</h5>
-			<h6 class="card-subtitle mb-2 text-muted">{{ item.code }}</h6>
-		    <p>{{ item.make }}, {{ item.model }}</p>
-		    <div>
-		    	<small>{{ item.tar_name }} -</small>
-		    	<small>{{ item.tar_code }}, </small>
-		    	<small>{{ item.tar_data }} MB Data, </small>
-		    	<small>{{ item.tar_minutes }} minutes, </small>
-		    	<small>{{ item.tar_sms }} sms</small>
-		    </div>
-		</div>
-	</div>
-</div>
-<div class="container-fluid" *ngIf="!isMobile">
+<div class="container-fluid">
 	<section class="custom-table">
-		<div class="table-header">
+		<div class="row row-filters" *ngIf="isMobile">
+			<div class="col-auto">
+				<select  [(ngModel)]="column" class="form-control form-control-sm">
+					<option>Select Filter</option>
+					<option value="name">Name</option>
+					<option value="make">Make</option>
+					<option value="model">Model</option>
+					<option value="code">Code</option>
+				</select>
+			</div>
+			<div class="col-auto">
+				<select [(ngModel)]="direction" class="form-control form-control-sm">
+					<option value="asc">Asc</option>
+					<option value="desc">Desc</option>
+				</select>
+			</div>
+		</div>
+		<div class="table-header" *ngIf="!isMobile">
 			<div class="col">Name
 				<i class="bi bi-chevron-double-up" (click)="setSortParams({dir:'asc', col: 'name'})"></i>
 		    	<i class="bi bi-chevron-double-down" (click)="setSortParams({dir:'desc', col: 'name'})"></i>
@@ -54,19 +38,21 @@
 		    	Terrif Detail
 		    </div>
 		</div>
-		<div class="table-body" [style.height.px]="contentHeight">
-		  	<div class="table-row"  *ngFor="let item of deals|filter:searchTerm|sort:direction:column">
-			    <div class="col">{{ item.name }}</div>
-			    <div class="col">{{ item.make }}</div>
-			    <div class="col">{{ item.model }}</div>
-			    <div class="col">{{ item.code }}</div>
-			    <div class="col col-md">
-			    	<small>{{ item.tar_name }} -</small>
-			    	<small>{{ item.tar_code }}, </small>
-			    	<small>{{ item.tar_data }} MB Data, </small>
-			    	<small>{{ item.tar_minutes }} minutes, </small>
-			    	<small>{{ item.tar_sms }} sms</small>
-			    </div>
+		<div [style.height.px]="contentHeight" class="table-body">
+		  	<div [ngClass]="{'card': isMobile}" *ngFor="let item of deals|filter:searchTerm|sort:direction:column">
+		  		<div [className]="isMobile ? 'card-body' : 'table-row'">
+				    <div [className]="isMobile ? 'card-title font-weight-bold text-uppercase' : 'col'">{{ item.name }}</div>
+				    <div [className]="isMobile ? 'card-subtitle mb-2 text-muted' : 'col'">{{ item.make }}</div>
+				    <div [ngClass]="{'col': !isMobile}">{{ item.model }}</div>
+				    <div [ngClass]="{'col': !isMobile}">{{ item.code }}</div>
+				    <div [ngClass]="{'col col-md': !isMobile}">
+				    	<small>{{ item.tar_name }} -</small>
+				    	<small>{{ item.tar_code }}, </small>
+				    	<small>{{ item.tar_data }} MB Data, </small>
+				    	<small>{{ item.tar_minutes }} minutes, </small>
+				    	<small>{{ item.tar_sms }} sms</small>
+				    </div>
+				</div>
 			</div>
 		</div>
 	</section>
